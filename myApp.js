@@ -11,18 +11,27 @@ const personSchema= new Schema({
 const Person =mongoose.model("Person",personSchema);
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  const person = new Person({name:"fahim",age:24,favoriteFoods:["indian"]})
+  person.save(function (err,data) {
+    done(err,data);
+  });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
   Person.create(arrayOfPeople,(err,data)=>{done(err,data);})
 };
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  Person.find({name: personName},(err,data)=>{
+    done(err,data);
+  })
+
 };
 
 const findOneByFood = (food, done) => {
-  done(null /*, data*/);
+  Person.findOne({favoriteFoods : food},(err,data)=>{
+    done(err,data);
+  })
+
 };
 
 const findPersonById = (personId, done) => {
